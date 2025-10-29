@@ -296,10 +296,6 @@ p{
         outline: none;
         font-size: 0.9rem;
       }
-
-      button {
-        display: none;
-      }
     }
 
     hr {

@@ -373,3 +373,38 @@ def api_update_profile():
     finally:
         if "cursor" in locals(): cursor.close()
         if "db" in locals(): db.close()
+
+##############################
+@app.post("/api-search")
+def api_search():
+    try:
+        # Validate search input
+        # search_for = x.validate_search_for(request.form.get("search_for", ""))
+        search_for = request.form.get("search_for", "")
+
+        if not search_for: 
+            return """
+        <browser mix-remove="#search_results"></browser>
+        """
+        
+        ic(search_for)
+        db, cursor = x.db()
+ 
+        q = "SELECT * FROM users WHERE user_username LIKE %s "
+        # ORDER BY user_username LIMIT 10
+        cursor.execute(q, (f"%{search_for}%",))
+        users = cursor.fetchall()
+        
+
+
+        orange_box = render_template("_orange_box.html", users=users)
+        return f"""
+        <browser mix-remove="#search_results"></browser>
+        <browser mix-bottom="#search_form">{orange_box}</browser>
+        """
+    except Exception as ex:
+        ic(ex)
+        return str(ex)
+    finally:
+        if "cursor" in locals(): cursor.close()
+        if "db" in locals(): db.close()

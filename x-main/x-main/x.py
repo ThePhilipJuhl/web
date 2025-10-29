@@ -126,8 +126,8 @@ def send_email(to_email, subject, template):
         # Copy the key : pdru ctfd jdhk xxci
 
         # Email and password of the sender's Gmail account
-        sender_email = "fullflaskdemomail"
-        password = "wtop ukks heht ulzv "  # If 2FA is on, use an App Password instead
+        sender_email = "magmardagmar42@gmail.com"
+        password = "csgj ulmv yuse bnlt"  # If 2FA is on, use an App Password instead
 
         # Receiver email address
         receiver_email = to_email
@@ -155,3 +155,12 @@ def send_email(to_email, subject, template):
         raise Exception("cannot send email", 500)
     finally:
         pass
+
+##############################
+SEARCH_MIN_LEN = 1
+SEARCH_MAX_LEN = 30
+REGEX_SEARCH_FOR = f"^[A-Za-z0-9_]{{{SEARCH_MIN_LEN},{SEARCH_MAX_LEN}}}$"
+def validate_search_for(search_for = ""):
+    search_for = search_for.strip()
+    if not re.match(REGEX_SEARCH_FOR, search_for): raise Exception("Invalid search", 400)
+    return search_for
