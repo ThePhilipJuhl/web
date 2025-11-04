@@ -566,7 +566,10 @@ p{
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
 }
+
+
 
 .x-dialog__close {
   position: absolute;

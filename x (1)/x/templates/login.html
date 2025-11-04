@@ -10,11 +10,27 @@
       </div>
   </div>
 
-  <div class="x-landing__right">
-    
-    <div class="x-dialog__content">
-        <h2 id="loginTitle">Log in to X</h2>
-        <form action="/login" mix-post class="x-dialog__form" autocomplete="off">
+  <div class="x-dialog__content">
+    <div class="x-dialog_flags">
+      {% if lan != "en" %}
+      <a href="/login">
+        <img src="/static/images/en.png" style="width: 2rem; height: 1.5rem;">
+      </a>
+      {% endif %}
+      {% if lan != "dk" %}
+      <a href="/login/dk">
+        <img src="/static/images/dk.png" style="width: 2rem; height: 1.5rem;">
+      </a>
+      {% endif %}
+      {% if lan != "sp" %}
+      <a href="/login/sp">
+        <img src="/static/images/sp.png" style="width: 2rem; height: 1.5rem;">
+      </a>
+      {% endif %}
+    </div>
+    <h2 id="loginTitle">Log in to X</h2>
+        <form action="/login/{{lan}}" mix-post class="x-dialog__form" autocomplete="off">
+            <input type="hidden" name="lan" value="{{ lan }}">
             <input name="user_email" type="text" placeholder="Email" mix-check="{{ x.REGEX_EMAIL }}">
             <input name="user_password" type="password" placeholder="Password" mix-check="{{ x.REGEX_USER_PASSWORD }}">
             <button class="x-dialog__btn" mix-default="Login" mix-await="Logging in ...">
@@ -22,13 +38,13 @@
             </button>
         </form>
         <p class="x-dialog__alt">
-            Don't have an account? 
+          {{ dictionary[lan ~ '_one'] }}
             <a href="{{ url_for('signup') }}">Sign up</a>
         </p>
     </div>
 
 
-  </div>
+  
 
 </main>
 

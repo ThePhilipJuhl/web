@@ -6,7 +6,7 @@ import x
 import time
 import uuid
 import os
-
+import dictionary
 from icecream import ic
 ic.configureOutput(prefix=f'----- | ', includeContext=True)
 
@@ -34,24 +34,41 @@ def view_index():
 
 ##############################
 @app.route("/login", methods=["GET", "POST"])
+@app.route("/login/<lan>", methods=["GET", "POST"])
 @x.no_cache
-def login():
-
+def login(lan="en"):
+    ic(lan)
     if request.method == "GET":
         if session.get("user", ""): return redirect(url_for("home"))
-        return render_template("login.html", x=x)
+        if lan not in dictionary.allowed_languages: lan = "en"
+        return render_template("login.html", x=x, dictionary=dictionary, lan=lan)
 
     if request.method == "POST":
         try:
+            # Get language from form if provided, fallback to URL param
+            lan = request.form.get("lan", lan)
+            if lan not in dictionary.allowed_languages:
+                lan = "en"
+
             # Validate           
             user_email = x.validate_user_email()
             user_password = x.validate_user_password()
+
             # Connect to the database
             q = "SELECT * FROM users WHERE user_email = %s"
             db, cursor = x.db()
             cursor.execute(q, (user_email,))
             user = cursor.fetchone()
-            if not user: raise Exception("User not found", 400)
+
+            # if not user check dictionary and create translated messages, get the lan and dictionary thingy 
+            if not user:
+                translated_messages = {
+                    "en": dictionary.en_user_not_found,
+                    "dk": dictionary.dk_user_not_found,
+                    "sp": dictionary.sp_user_not_found,
+                }
+                message = translated_messages.get(lan, dictionary.en_user_not_found)
+                raise Exception(f"{message}", 400)
 
             if not check_password_hash(user["user_password"], user_password):
                 raise Exception("Invalid credentials", 400)
@@ -62,6 +79,7 @@ def login():
             user.pop("user_password")
 
             session["user"] = user
+
             return f"""<browser mix-redirect="/home"></browser>"""
 
         except Exception as ex:
