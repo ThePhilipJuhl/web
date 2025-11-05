@@ -7,11 +7,11 @@ def send_verify_email(to_email, user_verification_key):
         # Copy the key
 
         # Email and password of the sender's Gmail account
-        sender_email = "YOUR GMAIL HERE"
-        password = "APP PASSWORD HERE"  # If 2FA is on, use an App Password instead
+        sender_email = "magmardagmar42@gmail.com"
+        password = "zsmf sxyf zalz hstp"  # If 2FA is on, use an App Password instead
 
         # Receiver email address
-        receiver_email = "YOUR GMAIL HERE"
+        receiver_email = to_email
         
         # Create the email message
         message = MIMEMultipart()

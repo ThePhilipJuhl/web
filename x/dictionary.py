@@ -45,6 +45,49 @@ dont_have_an_account = {
     "sp" : "No tienes cuenta"
 }
 
+home = {
+    "en" : "Home",
+    "dk" : "Hjem",
+    "sp" : "Casa"
+}
+
+explore = {
+    "en" : "Explore",
+    "dk" : "Eksporter",
+    "sp" : "Explorar"
+}
+
+notifications = {
+    "en" : "Notifications",
+    "dk" : "Notifikationer",
+    "sp" : "Notificaciones"
+}
+
+messages = {
+    "en" : "Messages",
+    "dk" : "Beskeder",
+    "sp" : "Mensajes"
+}
+
+bookmarks = {
+    "en" : "Bookmarks",
+    "dk" : "Bogmærker",
+    "sp" : "Marcadores"
+}
+
+jobs = {
+    "en" : "Jobs",
+    "dk" : "Jobs",
+    "sp" : "Trabajos"
+}
+
+communities = {
+    "en" : "Communities",
+    "dk" : "Samfund",
+    "sp" : "Comunidades"
+}
+
+
 # error messages
 
 invalid_email = {
@@ -76,5 +119,8 @@ user_not_found = {
     "dk" : "Bruger ikke fundet",
     "sp" : "Usuario no encontrado"
 }
+
+
+
 
 

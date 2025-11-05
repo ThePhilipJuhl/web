@@ -65,6 +65,8 @@ def login(lan = "en"):
 
             user.pop("user_password")
 
+            user["user_language"] = lan
+
             session["user"] = user
             return f"""<browser mix-redirect="/home"></browser>"""
 
@@ -175,7 +177,9 @@ def home():
         suggestions = cursor.fetchall()
         ic(suggestions)
 
-        return render_template("home.html", tweets=tweets, trends=trends, suggestions=suggestions, user=user)
+        lan = session["user"]["user_language"]
+
+        return render_template("home.html", lan=lan, tweets=tweets, trends=trends, suggestions=suggestions, user=user, dictionary=dictionary)
     except Exception as ex:
         ic(ex)
         return "error"

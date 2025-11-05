@@ -34,18 +34,20 @@
 
                 <li>
                     <a href="/home-comp" mix-get><i class="fa-solid fa-house"></i>
-                        <span class="pointer-e-none">Home</span>
+                        <span class="pointer-e-none">
+                            {{ dictionary.home[lan] }}
+                        </span>
                     </a>
                 </li>
 
 
-                <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i><span>Explore</span></a></li>
-                <li><a href="#"><i class="fa-regular fa-bell"></i><span>Notifications</span></a></li>
-                <li><a href="#"><i class="fa-regular fa-envelope"></i><span>Messages</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i><span>{{ dictionary.explore[lan] }}</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-bell"></i><span>{{ dictionary.notifications[lan] }}</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-envelope"></i><span>{{ dictionary.messages[lan] }}</span></a></li>
                 <li><a href="#"><i class="fa-solid fa-atom"></i><span>Grok</span></a></li>
-                <li><a href="#"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a></li>
-                <li><a href="#"><i class="fa-solid fa-briefcase"></i><span>Jobs</span></a></li>
-                <li><a href="#"><i class="fa-solid fa-users"></i><span>Communities</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-bookmark"></i><span>{{ dictionary.bookmarks[lan] }}</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-briefcase"></i><span>{{ dictionary.jobs[lan] }}</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-users"></i><span>{{ dictionary.communities[lan] }}</span></a></li>
                 <li><a href="#"><i class="fa-solid fa-star"></i><span>Premium</span></a></li>
 
                 <li>
