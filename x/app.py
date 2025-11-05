@@ -256,9 +256,12 @@ def profile():
         if not user: return "error"
         q = "SELECT * FROM users WHERE user_pk = %s"
         db, cursor = x.db()
+        lan = session["user"]["user_language"]
         cursor.execute(q, (user["user_pk"],))
         user = cursor.fetchone()
-        profile_html = render_template("_profile.html", x=x, user=user)
+        profile_html = render_template("_profile.html", x=x, user=user, dictionary=dictionary, lan=lan)
+
+
         return f"""<browser mix-update="main">{ profile_html }</browser>"""
     except Exception as ex:
         ic(ex)
