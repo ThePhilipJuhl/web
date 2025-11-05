@@ -1,7 +1,7 @@
 import x
 
 allowed_languages = ["en", "dk", "sp"]
-
+# home page text
 email = {
     "en" : "Email",
     "dk" : "Email",
@@ -87,6 +87,60 @@ communities = {
     "sp" : "Comunidades"
 }
 
+logout = {
+    "en" : "Logout",
+    "dk" : "Log ud",
+    "sp" : "Salir"
+}
+
+trends = {
+    "en" : "Whats happening now",
+    "dk" : "Det sker nu",
+    "sp" : "Lo que pasa ahora"
+}
+
+who_to_follow = {
+    "en" : "Who to follow",
+    "dk" : "Hvem skal følges",
+    "sp" : "Quien seguir"
+}
+
+#Login / signup credentials 
+
+to = {
+    "en" : "to",
+    "dk" : "til",
+    "sp" : "a"}
+
+characters = {
+    "en" : "characters",
+    "dk" : "tegn",
+    "sp" : "caracteres"
+}
+
+update_profile = {
+    "en" : "Update profile",
+    "dk" : "Opdater profil",
+    "sp" : "Actualizar perfil"
+}
+
+profile = {
+    "en" : "Profile",
+    "dk" : "Profil",
+    "sp" : "Perfil"
+}
+
+search = {
+    "en" : "Search",
+    "dk" : "Søg",
+    "sp" : "Buscar"
+}
+
+what_is_new = {
+    "en" : "What's new",
+    "dk" : "Hvad er nyt",
+    "sp" : "Que pasa"
+}
 
 # error messages
 
@@ -120,7 +174,15 @@ user_not_found = {
     "sp" : "Usuario no encontrado"
 }
 
+# toasts
 
+profile_updated ={
+    "en" : "Profile updated",
+    "dk" : "Profil opdateret",
+    "sp" : "Perfil actualizado"}
 
-
-
+email_already_registered = {
+    "en" : "Email alreadt registered",
+    "dk" : "eMAIL allerede registreret",
+    "sp" : "Correo electrónica ya registrado"
+}

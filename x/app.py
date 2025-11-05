@@ -115,6 +115,8 @@ def signup(lan = "en"):
             user_verified_at = 0
 
             user_hashed_password = generate_password_hash(user_password)
+            
+
 
             # Connect to the database
             q = "INSERT INTO users VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -127,6 +129,7 @@ def signup(lan = "en"):
             email_verify_account = render_template("_email_verify_account.html", user_verification_key=user_verification_key)
             ic(email_verify_account)
             x.send_email(user_email, "Verify your account", email_verify_account)
+        
 
             return f"""<mixhtml mix-redirect="{ url_for('login') }"></mixhtml>""", 400
         except Exception as ex:
@@ -256,9 +259,12 @@ def profile():
         if not user: return "error"
         q = "SELECT * FROM users WHERE user_pk = %s"
         db, cursor = x.db()
+        lan = session["user"]["user_language"]
         cursor.execute(q, (user["user_pk"],))
         user = cursor.fetchone()
-        profile_html = render_template("_profile.html", x=x, user=user)
+        profile_html = render_template("_profile.html", x=x, user=user, dictionary=dictionary, lan=lan)
+
+
         return f"""<browser mix-update="main">{ profile_html }</browser>"""
     except Exception as ex:
         ic(ex)
@@ -355,8 +361,9 @@ def api_update_profile():
         cursor.execute(q, (user_email, user_username, user_first_name, user["user_pk"]))
         db.commit()
 
+
         # Response to the browser
-        toast_ok = render_template("___toast_ok.html", message="Profile updated successfully")
+        toast_ok = render_template("___toast_ok.html", message=dictionary.profile_updated[user["user_language"]])
         return f"""
             <browser mix-bottom="#toast">{toast_ok}</browser>
             <browser mix-update="#profile_tag .name">{user_first_name}</browser>
@@ -367,12 +374,12 @@ def api_update_profile():
         ic(ex)
         # User errors
         if ex.args[1] == 400:
-            toast_error = render_template("___toast_error.html", message=ex.args[0])
+            toast_error = render_template("___toast_error.html", message=ex.args[0], lan=user["user_language"])
             return f"""<mixhtml mix-update="#toast">{ toast_error }</mixhtml>""", 400
         
         # Database errors
         if "Duplicate entry" and user_email in str(ex): 
-            toast_error = render_template("___toast_error.html", message="Email already registered")
+            toast_error = render_template("___toast_error.html", message=dictionary.email_already_registered[user["user_language"]])
             return f"""<mixhtml mix-update="#toast">{ toast_error }</mixhtml>""", 400
         if "Duplicate entry" and user_username in str(ex): 
             toast_error = render_template("___toast_error.html", message="Username already registered")
