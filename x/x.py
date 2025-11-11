@@ -56,9 +56,9 @@ def no_cache(view):
 
 ##############################
 REGEX_EMAIL = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
-def validate_user_email(lan = "en"):
+def validate_user_email(lan = "english"):
     user_email = request.form.get("user_email", "").strip()
-    if not re.match(REGEX_EMAIL, user_email): raise Exception(dictionary.invalid_email[lan], 400)
+    if not re.match(REGEX_EMAIL, user_email): raise Exception(f"{ lans('invalid_email') }", 400)
     return user_email
 
 ##############################
@@ -89,7 +89,7 @@ USER_PASSWORD_MAX = 50
 REGEX_USER_PASSWORD = f"^.{{{USER_PASSWORD_MIN},{USER_PASSWORD_MAX}}}$"
 def validate_user_password(lan = "en"):
     user_password = request.form.get("user_password", "").strip()
-    if not re.match(REGEX_USER_PASSWORD, user_password): raise Exception(dictionary.invalid_password[lan], 400)
+    if not re.match(REGEX_USER_PASSWORD, user_password): raise Exception(f"{ lans('invalid_password') }", 400)
     return user_password
 
 

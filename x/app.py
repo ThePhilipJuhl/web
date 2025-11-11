@@ -72,13 +72,13 @@ def login(lan = "english"):
             db, cursor = x.db()
             cursor.execute(q, (user_email,))
             user = cursor.fetchone()
-            if not user: raise Exception(dictionary.user_not_found[lan], 400)
+            if not user: raise Exception({{ x.lans("user_not_found") }}, 400)
 
             if not check_password_hash(user["user_password"], user_password):
-                raise Exception(dictionary.invalid_credentials[lan], 400)
+                raise Exception({{ x.lans("invalid_credentials") }}, 400)
 
             if user["user_verification_key"] != "":
-                raise Exception(dictionary.user_not_verified[lan], 400)
+                raise Exception({{ x.lans("user_not_verified") }}, 400)
 
             user.pop("user_password")
 
@@ -86,7 +86,7 @@ def login(lan = "english"):
             return f"""<browser mix-redirect="/home"></browser>"""
 
         except Exception as ex:
-            ic(ex, "ey buddy")
+            ic(ex)
 
             # User errors
             if ex.args[1] == 400:

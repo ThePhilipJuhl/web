@@ -43,5 +43,30 @@
         "english": "sign up",
         "danish": "opret dig x ",
         "spanish": "SÅ HJÆLP MIG DOG"
+    },
+    "invalid_email": {
+        "english": "invalid email",
+        "danish": "forkert email",
+        "spanish": "la emailia no correcto"
+    },
+    "invalid_password": {
+        "english": "invalid password",
+        "danish": "forkert password",
+        "spanish": "invalido passwordo"
+    },
+    "invalid_credentials": {
+        "english": "invalid credentials",
+        "danish": "forkerte detailer ",
+        "spanish": "NOOO WRONG AHAHHA"
+    },
+    "user_not_found": {
+        "english": "user not found",
+        "danish": "bruger ikke fundet",
+        "spanish": "chalala bitch"
+    },
+    "user_not_verified": {
+        "english": "user not verified",
+        "danish": "bruger ikke verificeret ",
+        "spanish": "kom again nonce"
     }
 }
