@@ -130,7 +130,6 @@ def signup(lan = "en"):
             ic(email_verify_account)
             x.send_email(user_email, "Verify your account", email_verify_account)
         
-
             return f"""<mixhtml mix-redirect="{ url_for('login') }"></mixhtml>""", 400
         except Exception as ex:
             ic(ex)
