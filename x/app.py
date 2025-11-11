@@ -86,7 +86,7 @@ def login(lan = "english"):
             return f"""<browser mix-redirect="/home"></browser>"""
 
         except Exception as ex:
-            ic(ex)
+            ic(ex, "ey buddy")
 
             # User errors
             if ex.args[1] == 400:
@@ -473,3 +473,4 @@ def get_data_from_sheet():
         return str(ex)
     finally:
         pass
+    
